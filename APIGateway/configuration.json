@@ -6,7 +6,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 9001
+          "Port": 9011
         }
       ],
       "UpstreamPathTemplate": "/home",
@@ -18,7 +18,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 9002
+          "Port": 9012
         }
       ],
       "UpstreamPathTemplate": "/second",
@@ -30,7 +30,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 9003
+          "Port": 9013
         }
       ],
       "UpstreamPathTemplate": "/login/{uname}",
@@ -42,10 +42,10 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 9004
+          "Port": 9014
         }
       ],
-      "UpstreamPathTemplate": "/ticketdownlaod",
+      "UpstreamPathTemplate": "/ticketdownload",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
@@ -54,7 +54,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 9005
+          "Port": 9015
         }
       ],
       "UpstreamPathTemplate": "/status",
@@ -66,7 +66,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 9006
+          "Port": 9016
         }
       ],
       "UpstreamPathTemplate": "/databasechanges",
@@ -78,7 +78,7 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 9007
+          "Port": 9017
         }
       ],
       "UpstreamPathTemplate": "/details",
