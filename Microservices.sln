@@ -9,38 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "APIGateway\AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CancelTicket", "CancelTicket\CancelTicket.csproj", "{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Filght-Booking-System", "Filght-Booking-System\", "{80E11D02-8EC0-4046-BA00-2D151702CEA9}"
-	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		Debug.AspNetCompiler.VirtualPath = "/localhost_62187"
-		Debug.AspNetCompiler.PhysicalPath = "Filght-Booking-System\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62187\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/localhost_62187"
-		Release.AspNetCompiler.PhysicalPath = "Filght-Booking-System\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62187\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "62187"
-		SlnRelativePath = "Filght-Booking-System\"
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginSecurity", "LoginSecurity\LoginSecurity.csproj", "{7E4A4C5E-E813-4D45-8284-8AFA3F999959}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginSecurity", "LoginSecurity\LoginSecurity.csproj", "{7E4A4C5E-E813-4D45-8284-8AFA3F999959}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Download_Ticket", "Download_Ticket\Download_Ticket.csproj", "{441CF109-D96E-42EF-98ED-94DB92539C13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Download_Ticket", "Download_Ticket\Download_Ticket.csproj", "{441CF109-D96E-42EF-98ED-94DB92539C13}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Check_Status_with_PNR", "Check_Status_with_PNR\Check_Status_with_PNR.csproj", "{30AAE329-EE72-4E01-8E70-295DCE056114}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Check_Status_with_PNR", "Check_Status_with_PNR\Check_Status_with_PNR.csproj", "{30AAE329-EE72-4E01-8E70-295DCE056114}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Airline_Operations", "Airline_Operations", "{2063D73D-C399-4B2B-AF90-C960258BC352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modify_Airline_Details", "Modify_Airline_Details\Modify_Airline_Details.csproj", "{3DE8B727-F666-4154-AE28-EC1B25B0F42B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modify_Airline_Details", "Modify_Airline_Details\Modify_Airline_Details.csproj", "{3DE8B727-F666-4154-AE28-EC1B25B0F42B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airline", "Airline\Airline.csproj", "{B9EBA68C-798B-45B7-839C-DBD3D613FE9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Airline", "Airline\Airline.csproj", "{B9EBA68C-798B-45B7-839C-DBD3D613FE9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,10 +39,6 @@ Global
 		{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80E11D02-8EC0-4046-BA00-2D151702CEA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80E11D02-8EC0-4046-BA00-2D151702CEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80E11D02-8EC0-4046-BA00-2D151702CEA9}.Release|Any CPU.ActiveCfg = Debug|Any CPU
-		{80E11D02-8EC0-4046-BA00-2D151702CEA9}.Release|Any CPU.Build.0 = Debug|Any CPU
 		{7E4A4C5E-E813-4D45-8284-8AFA3F999959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E4A4C5E-E813-4D45-8284-8AFA3F999959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E4A4C5E-E813-4D45-8284-8AFA3F999959}.Release|Any CPU.ActiveCfg = Release|Any CPU
