@@ -18,5 +18,19 @@ namespace Shared_Model
         public int? BusinessRows { get; set; }
         public int? NonBusinessRows { get; set; }
         public int? Blocked { get; set; }
+
+        //flight
+        public string FlightName { get; set; }
+
+        //schedule
+        public string UserName { get; set; }
+        public string UniqueKey { get; set; }
+        public string ConfirmationNumber { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
+        public string StartDateTime { get; set; }
+        public string EndDateTime { get; set; }
+        public string Schedule { get; set; }
+        public string Meal { get; set; }
     }
 }

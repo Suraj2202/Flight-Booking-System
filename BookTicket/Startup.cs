@@ -36,7 +36,7 @@ namespace BookTicket
 
                     cfg.Host("rabbitmq://localhost");
 
-                    cfg.ReceiveEndpoint("airlines_queue", ep =>
+                    cfg.ReceiveEndpoint("shared_airline_queue", ep =>
                     {
                         ep.PrefetchCount = 16;
                         ep.UseMessageRetry(r => r.Interval(2, 100));

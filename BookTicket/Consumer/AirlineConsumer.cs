@@ -13,6 +13,7 @@ namespace BookTicket.Consumer
         {
             var data = context.Message;
 
+
         }
     }
 }
