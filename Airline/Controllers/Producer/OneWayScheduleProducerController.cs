@@ -45,6 +45,9 @@ namespace Airline.Controllers.Producer
                     {
                         if (GetDateTime(schedule.StartDateTime) >= GetDateTime(requestDetails.DepartStartDateTime))
                         {
+                            double baseFare = (double)context.AirlineDetails.Where(x => x.FlightNumber == schedule.FlightNumber)
+                                                                    .FirstOrDefault().BaseFare;
+
                             SharedAirlineDetails sharedScheduleDetails = new SharedAirlineDetails()
                             {
                                 UserName = requestDetails.UserName,
@@ -56,7 +59,8 @@ namespace Airline.Controllers.Producer
                                 StartDateTime = schedule.StartDateTime,
                                 EndDateTime = schedule.EndDateTime,
                                 Schedule = schedule.Schedule,
-                                Meal = schedule.Meal
+                                Meal = schedule.Meal,
+                                BaseFare = baseFare
                             };
                             
                             await endPoint.Send(sharedScheduleDetails);
