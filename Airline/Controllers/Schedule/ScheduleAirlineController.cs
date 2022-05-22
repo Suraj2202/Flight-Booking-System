@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Airline.Controllers
+namespace Airline.Controllers.Schedule
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -35,22 +35,22 @@ namespace Airline.Controllers
         public void Post([FromBody] ScheduleDetails scheduleDetails)
         {
             if(scheduleDetails.FlightNumber != null)
-            {
-                ScheduleDetails details = new ScheduleDetails()
-                {
-                    FlightNumber = scheduleDetails.FlightNumber,
-                    ConfirmationNumber = airlineData.GetConfirmationNumber(scheduleDetails.FlightNumber),
-                    From = scheduleDetails.From,
-                    To = scheduleDetails.To,
-                    StartDateTime = scheduleDetails.StartDateTime,
-                    EndDateTime = scheduleDetails.EndDateTime,
-                    Schedule = scheduleDetails.Schedule,
-                    Meal = scheduleDetails.Meal
-                };
-
+            {                
                 //adding 
                 using(InventoryContext ctx = new InventoryContext())
                 {
+                    ScheduleDetails details = new ScheduleDetails()
+                    {
+                        FlightNumber = scheduleDetails.FlightNumber,
+                        ConfirmationNumber = airlineData.GetConfirmationNumber(scheduleDetails.FlightNumber),
+                        From = scheduleDetails.From,
+                        To = scheduleDetails.To,
+                        StartDateTime = scheduleDetails.StartDateTime,
+                        EndDateTime = scheduleDetails.EndDateTime,
+                        Schedule = scheduleDetails.Schedule,
+                        Meal = scheduleDetails.Meal
+                    };
+                    
                     ctx.ScheduleDetails.Add(details);
                     ctx.SaveChanges();
                 }

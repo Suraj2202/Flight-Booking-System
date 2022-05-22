@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace BookTickets.Models
+namespace Shared_Model
 {
-    public class AirlineDetails
+    public class SharedAirlineDetails
     {
         public string FlightNumber { get; set; }
         public string Logo { get; set; }
@@ -16,6 +18,5 @@ namespace BookTickets.Models
         public int? BusinessRows { get; set; }
         public int? NonBusinessRows { get; set; }
         public int? Blocked { get; set; }
-
     }
 }

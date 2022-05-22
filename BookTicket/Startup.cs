@@ -1,5 +1,4 @@
 using BookTicket.Consumer;
-using BookTickets.Models;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -37,7 +36,7 @@ namespace BookTicket
 
                     cfg.Host("rabbitmq://localhost");
 
-                    cfg.ReceiveEndpoint("asdf", ep =>
+                    cfg.ReceiveEndpoint("airlines_queue", ep =>
                     {
                         ep.PrefetchCount = 16;
                         ep.UseMessageRetry(r => r.Interval(2, 100));
