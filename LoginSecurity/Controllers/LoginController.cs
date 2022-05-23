@@ -61,6 +61,7 @@ namespace LoginSecurity.Controllers
                         // if token expire then save it in db.
                         string token = _tokenManager.GenerateJsonWebToken(user.UserName);
                         user.Token = token;
+                        ctx.SaveChanges();
                         return Ok("New Token Generated " + role);
                     }
                 }

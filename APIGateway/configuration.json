@@ -72,6 +72,8 @@
       "UpstreamPathTemplate": "/status",
       "UpstreamHttpMethod": [ "Get" ]
     },
+
+    //
     {
       "DownstreamPathTemplate": "/api/DataModification",
       "DownstreamScheme": "http",
@@ -84,8 +86,11 @@
       "UpstreamPathTemplate": "/databasechanges",
       "UpstreamHttpMethod": [ "Get" ]
     },
+
+    //Airline Microservices Controller Mapping
+
     {
-      "DownstreamPathTemplate": "/api/Details",
+      "DownstreamPathTemplate": "/api/AirlineDetails",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -93,8 +98,116 @@
           "Port": 9017
         }
       ],
-      "UpstreamPathTemplate": "/details",
+      "UpstreamPathTemplate": "/api/v1.0/flight/AirlineDetails",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/AirlineDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/AirlineDetails",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/FlightDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/FlightDetails",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/FlightDetails",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/FlightDetails",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ScheduleAirline",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/ScheduleAirline",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ScheduleAirline",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/ScheduleAirline",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/AirlineProducer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/AirlineProducer",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/AirlineProducer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/AirlineProducer",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/OneWayScheduleProducer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/OneWayScheduleProducer",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/TwoWayScheduleProducer",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9017
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/TwoWayScheduleProducer",
+      "UpstreamHttpMethod": [ "Post" ]
     }
 
   ]
