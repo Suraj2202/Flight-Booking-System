@@ -29,6 +29,15 @@ namespace BookTicket
         {
             services.AddMassTransit(x =>
             {
+                services.AddCors((options) =>
+                {
+                    options.AddPolicy(name: "angularApplication", (builder) =>
+                    {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+                });
                 x.AddConsumer<AirlineConsumer>();
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
@@ -62,6 +71,8 @@ namespace BookTicket
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("angularApplication");
 
             app.UseEndpoints(endpoints =>
             {

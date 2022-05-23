@@ -50,7 +50,7 @@ namespace Airline.Controllers.Airlines
                 };
 
 
-                //adding to Flight Details DB
+                //adding to Airline Details DB
                 using (InventoryContext context = new InventoryContext())
                 {
                     context.AirlineDetails.Add(airlineDetails);

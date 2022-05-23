@@ -7,6 +7,6 @@ namespace Airline.Models
     {
         public string CouponCode { get; set; }
         public double? Value { get; set; }
-        public int? Avail { get; set; }
+        public double? MinimumAmount { get; set; }
     }
 }

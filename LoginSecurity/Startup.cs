@@ -25,6 +25,16 @@ namespace LoginSecurity
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors((options) =>
+            {
+                options.AddPolicy(name: "angularApplication", (builder) =>
+                {
+                    builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+                });
+            });
+
             services.AddControllers();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -62,7 +72,9 @@ namespace LoginSecurity
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
+            app.UseCors("angularApplication");
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

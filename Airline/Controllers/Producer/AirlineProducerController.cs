@@ -24,7 +24,7 @@ namespace Airline.Controllers.Producer
         [HttpPost]
         public async Task<IActionResult> AirlineData([FromBody] AirlineDetails airlineFlight)
         {
-            Uri uri = new Uri("rabbitmq://localhost/airlines_queue");
+            Uri uri = new Uri("rabbitmq://localhost/shared_airline_queue");
             using (InventoryContext context = new InventoryContext())
             {
                 AirlineDetails airlineDetails = context.AirlineDetails?.Where(x => x.FlightNumber == airlineFlight.FlightNumber).FirstOrDefault();

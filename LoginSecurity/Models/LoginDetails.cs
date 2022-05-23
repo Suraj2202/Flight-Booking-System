@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace LoginSecurity.Models
+﻿namespace LoginSecurity.Models
 {
     public partial class LoginDetails
     {

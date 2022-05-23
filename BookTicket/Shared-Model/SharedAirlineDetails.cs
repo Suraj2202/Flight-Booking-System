@@ -32,5 +32,10 @@ namespace Shared_Model
         public string EndDateTime { get; set; }
         public string Schedule { get; set; }
         public string Meal { get; set; }
+
+        //Discounted Price
+        public string CouponCode { get; set; }
+        public double? Value { get; set; }
+        public double? MinimumAmount { get; set; }
     }
 }
