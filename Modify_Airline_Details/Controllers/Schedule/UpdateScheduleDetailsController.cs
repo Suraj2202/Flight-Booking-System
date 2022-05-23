@@ -18,7 +18,7 @@ namespace Modify_Airline_Details.Controllers.Schedule
         #endregion
         // POST api/<UpdateScheduleDetailsController>
         [HttpPost]
-        public void Post([FromBody] ScheduleDetails scheduleDetails)
+        public IActionResult Post([FromBody] ScheduleDetails scheduleDetails)
         {
             using (InventoryContext context = new InventoryContext())
             {
@@ -40,10 +40,10 @@ namespace Modify_Airline_Details.Controllers.Schedule
                     
                     // update all the values passed from 
                     context.SaveChanges();
-                    return;
+                    return Ok("Success");
                 }
                 else
-                    return;
+                    return BadRequest();
             }
         }
 

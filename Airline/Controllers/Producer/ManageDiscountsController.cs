@@ -22,7 +22,7 @@ namespace Airline.Controllers.Producer
         }
 
         [HttpPost]
-        public async Task<IActionResult> AirlineData([FromBody] DiscountDetails discountDetails)
+        public async Task<IActionResult> Discount([FromBody] DiscountDetails discountDetails)
         {
             Uri uri = new Uri("rabbitmq://localhost/shared_airline_queue");
             using (InventoryContext context = new InventoryContext())

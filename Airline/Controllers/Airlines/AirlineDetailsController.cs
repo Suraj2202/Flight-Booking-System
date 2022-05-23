@@ -30,7 +30,7 @@ namespace Airline.Controllers.Airlines
 
         // POST api/<AirlineDetailsController>
         [HttpPost]
-        public void Post([FromBody] AirlineDetails value)
+        public IActionResult Post([FromBody] AirlineDetails value)
         {
             //Previous Condition : first check if Flight nUmber is already in FlightDetails Table or not
             if (airline.IsFlightNumberAvailable(value.FlightNumber))
@@ -61,9 +61,10 @@ namespace Airline.Controllers.Airlines
                     flightDetails.DetailsUpdated = 1;
 
                     context.SaveChanges();
-
+                    return Ok("Success");
                 }
             }
+            return BadRequest();
         }
 
     }

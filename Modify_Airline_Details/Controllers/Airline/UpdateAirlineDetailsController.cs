@@ -13,7 +13,7 @@ namespace Modify_Airline_Details.Controllers.Airline
         
         // POST api/<UpdateAirlineDetailsController>
         [HttpPost]
-        public void Post([FromBody] AirlineDetails airlineDetails)
+        public IActionResult Post([FromBody] AirlineDetails airlineDetails)
         {
             using (InventoryContext context = new InventoryContext())
             {
@@ -41,9 +41,10 @@ namespace Modify_Airline_Details.Controllers.Airline
 
                     // update all the values passed from 
                     context.SaveChanges();
+                    return Ok("Success");
                 }
                 else
-                    return;
+                    return BadRequest();
             }
         }
 

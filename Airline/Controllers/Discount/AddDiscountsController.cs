@@ -24,7 +24,7 @@ namespace Airline.Controllers.Discount
 
         // POST api/<AddDiscountsController>
         [HttpPost]
-        public void Post([FromBody] DiscountDetails discountDetails)
+        public IActionResult Post([FromBody] DiscountDetails discountDetails)
         {
             DiscountDetails discountDetail = new DiscountDetails()
             {
@@ -38,8 +38,8 @@ namespace Airline.Controllers.Discount
                 {
                     context.DiscountDetails.Add(discountDetail);
 
-                    context.SaveChanges();                    
-
+                    context.SaveChanges();
+                return Ok("Success");
                 }            
         }
     }

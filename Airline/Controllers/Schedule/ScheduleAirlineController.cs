@@ -32,7 +32,7 @@ namespace Airline.Controllers.Schedule
 
         // POST api/<ScheduleAirlineController>
         [HttpPost]
-        public void Post([FromBody] ScheduleDetails scheduleDetails)
+        public IActionResult Post([FromBody] ScheduleDetails scheduleDetails)
         {
             if(scheduleDetails.FlightNumber != null)
             {                
@@ -53,8 +53,10 @@ namespace Airline.Controllers.Schedule
                     
                     ctx.ScheduleDetails.Add(details);
                     ctx.SaveChanges();
+                    return Ok("Success");
                 }
             }
+            return BadRequest();
         }
         
     }

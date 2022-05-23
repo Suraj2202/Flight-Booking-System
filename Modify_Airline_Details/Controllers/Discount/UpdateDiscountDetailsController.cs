@@ -14,7 +14,7 @@ namespace Modify_Airline_Details.Controllers.Discount
     {
 
         [HttpPost]
-        public void Post([FromBody] DiscountDetails discountDetails)
+        public IActionResult Post([FromBody] DiscountDetails discountDetails)
         {
             using (InventoryContext context = new InventoryContext())
             {
@@ -30,10 +30,10 @@ namespace Modify_Airline_Details.Controllers.Discount
 
                     // update all the values passed from 
                     context.SaveChanges();
-                    return;
+                    return Ok("Success");
                 }
                 else
-                    return;
+                    return BadRequest();
             }
         }
     }
