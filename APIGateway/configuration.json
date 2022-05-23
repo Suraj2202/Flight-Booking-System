@@ -1,7 +1,7 @@
 {
   "ReRoutes": [
     {
-      "DownstreamPathTemplate": "/api/home",
+      "DownstreamPathTemplate": "/api/OneWaySearchFlights/{flight}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,8 +9,20 @@
           "Port": 9011
         }
       ],
-      "UpstreamPathTemplate": "/home",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/api/v1.0/flight/onewaysearch/{flight}",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/TwoWaySearchFlights/{flight}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9011
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/twowaysearch/{flight}",
+      "UpstreamHttpMethod": [ "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/second",

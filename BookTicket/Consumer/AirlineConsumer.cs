@@ -34,7 +34,7 @@ namespace BookTicket.Consumer
                         Meal = data.Meal,
                         UserName = data.UserName,
                         UniqueKey = data.UniqueKey,
-                        BaseFare = 2600
+                        BaseFare = data?.BaseFare
                     };
                     
                     ctx.FlightSchedules.Add(scheduleDetail);

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using LoginSecurity.JwtToken;
+using LoginSecurity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -19,25 +21,7 @@ namespace LoginSecurity.Controllers
     public class LoginController : ControllerBase
     {
 
-        private string GenerateJsonWebToken(string username)
-        {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Flight@Booking@1"));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var claims = new[]
-            {
-                new Claim("Issuer", "Admin_Suraj"),
-                new Claim("Admin", "true"),
-                new Claim(JwtRegisteredClaimNames.UniqueName, username)
-            };
-            var token = new JwtSecurityToken(
-                "Admin_Suraj",
-                "Client",
-                claims,
-                expires: DateTime.Now.AddMinutes(120),
-                signingCredentials: credentials);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        ITokenManager _tokenManager = new TokenManager();
 
         // GET: api/<LoginController>
         [HttpGet]
@@ -46,17 +30,47 @@ namespace LoginSecurity.Controllers
             return new string[] { "Login Successfull redirecting to Booking Page" };
         }
 
-        // GET api/<LoginController>/5
+        /*// GET api/<LoginController>/5
         [HttpGet("{uname}")]
         public string Get(string uname)
         {
             return GenerateJsonWebToken(uname);
         }
-
+*/
         // POST api/<LoginController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] LoginDetails value)
         {
+            
+            using(UserSideContext ctx = new UserSideContext())
+            {
+                LoginDetails user = ctx.LoginDetails?.Where(x =>
+                                                      x.UserName == value.UserName &&
+                                                      x.Password == value.Password)
+                                                      .FirstOrDefault();
+
+                if(user != null)
+                {
+                    string userToken = user.Token;
+                    bool valid = _tokenManager.ValidateToken(userToken);
+                    int role = user.Role;
+                    if (valid)
+                        return Ok("Success " + role);
+                    else
+                    {
+                        // if token expire then save it in db.
+                        string token = _tokenManager.GenerateJsonWebToken(user.UserName);
+                        user.Token = token;
+                        return Ok("New Token Generated " + role);
+                    }
+                }
+                else
+                {
+                    return NotFound("User not found");
+                }
+            }
+            
+            
         }
 
         // PUT api/<LoginController>/5
