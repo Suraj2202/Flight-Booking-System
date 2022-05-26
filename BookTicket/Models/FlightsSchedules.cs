@@ -25,5 +25,6 @@ namespace BookTicket.Models
         public string NonBusinessRows { get; set; }
         public string BusinessSeats { get; set; }
         public string NonBusinessSeats { get; set; }
+        public string ClassSelected { get; set; }
     }
 }

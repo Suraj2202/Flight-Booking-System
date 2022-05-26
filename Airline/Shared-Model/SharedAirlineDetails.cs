@@ -37,5 +37,7 @@ namespace Shared_Model
         public string CouponCode { get; set; }
         public string Value { get; set; }
         public string MinimumAmount { get; set; }
+
+        public string ClassOption { get; set; }
     }
 }

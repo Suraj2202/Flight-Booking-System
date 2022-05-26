@@ -48,7 +48,25 @@ namespace Airline.Controllers.Producer
                 {
                     foreach (var schedule in allDepartSchedule)
                     {
-                        if (GetDateTime(schedule.StartDateTime) >= GetDateTime(requestDetails.DepartStartDateTime))
+                        //Check for days of Entry
+                        bool entrySuccess = false;
+                        if (schedule.Schedule == "Daily")
+                        {
+                            entrySuccess = true;
+                        }
+                        else
+                        {
+                            string[] allDays = schedule.Schedule.Split(',');
+                            foreach (string day in allDays)
+                            {
+                                if (GetDateTime(requestDetails.DepartStartDateTime).DayOfWeek.ToString() == day)
+                                {
+                                    entrySuccess = true;
+                                }
+                            }
+                        }
+
+                        if (GetDateTime(schedule.StartDateTime) >= GetDateTime(requestDetails.DepartStartDateTime) && entrySuccess)
                         {
                             string flightName = context.FlightsDetails.Where(x => x.FlightNumber == schedule.FlightNumber)
                                                                          .FirstOrDefault().FlightName;
@@ -66,8 +84,8 @@ namespace Airline.Controllers.Producer
                                     ConfirmationNumber = schedule.ConfirmationNumber,
                                     To = schedule.To,
                                     From = schedule.From,
-                                    StartDateTime = schedule.StartDateTime.Replace('-', '/'),
-                                    EndDateTime = schedule.EndDateTime.Replace('-', '/'),
+                                    StartDateTime = GetDateTime(requestDetails.DepartStartDateTime).ToString(),
+                                    EndDateTime = GetDateTime(requestDetails.DepartStartDateTime).AddHours(5).ToString(),
                                     Schedule = schedule.Schedule,
                                     Meal = schedule.Meal,
 
@@ -82,7 +100,8 @@ namespace Airline.Controllers.Producer
                                     NonBusinessRows = airline.NonBusinessRows,
                                     BaseFare = airline.BaseFare,
                                     BusinessSeats = airline.BusinessSeats,
-                                    NonBusinessSeats = airline.NonBusinessSeats
+                                    NonBusinessSeats = airline.NonBusinessSeats,
+                                    ClassOption = requestDetails.ClassOption
                                 };
 
                                 await endPoint.Send(sharedScheduleDetails);
@@ -96,7 +115,25 @@ namespace Airline.Controllers.Producer
                 {
                     foreach(var schedule in allReturnSchedule)
                     {
-                        if (GetDateTime(schedule.StartDateTime) >= GetDateTime(requestDetails.ReturnStartDateTime))
+                        //Check for days of Entry
+                        bool entrySuccess = false;
+                        if (schedule.Schedule == "Daily")
+                        {
+                            entrySuccess = true;
+                        }
+                        else
+                        {
+                            string[] allDays = schedule.Schedule.Split(',');
+                            foreach (string day in allDays)
+                            {
+                                if (GetDateTime(requestDetails.DepartStartDateTime).DayOfWeek.ToString() == day)
+                                {
+                                    entrySuccess = true;
+                                }
+                            }
+                        }
+
+                        if (GetDateTime(schedule.StartDateTime) >= GetDateTime(requestDetails.ReturnStartDateTime) && entrySuccess)
                         {
                             string flightName = context.FlightsDetails.Where(x => x.FlightNumber == schedule.FlightNumber)
                                                                          .FirstOrDefault().FlightName;
@@ -114,8 +151,8 @@ namespace Airline.Controllers.Producer
                                     ConfirmationNumber = schedule.ConfirmationNumber,
                                     To = schedule.To,
                                     From = schedule.From,
-                                    StartDateTime = schedule.StartDateTime,
-                                    EndDateTime = schedule.EndDateTime,
+                                    StartDateTime = GetDateTime(requestDetails.ReturnStartDateTime).ToString(),
+                                    EndDateTime = GetDateTime(requestDetails.ReturnStartDateTime).AddHours(5).ToString(),
                                     Schedule = schedule.Schedule,
                                     Meal = schedule.Meal,
 
@@ -130,7 +167,8 @@ namespace Airline.Controllers.Producer
                                     NonBusinessRows = airline.NonBusinessRows,
                                     BaseFare = airline.BaseFare,
                                     BusinessSeats = airline.BusinessSeats,
-                                    NonBusinessSeats = airline.NonBusinessSeats
+                                    NonBusinessSeats = airline.NonBusinessSeats,
+                                    ClassOption = requestDetails.ClassOption
                                 };
 
                                 await endPoint.Send(sharedScheduleDetails);

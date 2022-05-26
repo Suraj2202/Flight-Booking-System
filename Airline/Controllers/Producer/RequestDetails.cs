@@ -14,5 +14,7 @@ namespace Airline.Controllers.Producer
         //format "MM/dd/yyyy HH:mm:ss"
         public string DepartStartDateTime { get; set; }
         public string ReturnStartDateTime { get; set; }
+
+        public string ClassOption { get; set; }
     }
 }

@@ -42,8 +42,9 @@ namespace BookTicket.Consumer
                         NonBusinessRows = data.NonBusinessRows,
                         BaseFare = data.BaseFare,
                         BusinessSeats = data.BusinessSeats,
-                        NonBusinessSeats = data.NonBusinessSeats
-
+                        NonBusinessSeats = data.NonBusinessSeats,
+                        ClassSelected = data.ClassOption
+                        
                     };
                     
                     ctx.FlightsSchedules.Add(scheduleDetail);

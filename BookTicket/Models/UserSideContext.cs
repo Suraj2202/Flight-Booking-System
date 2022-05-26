@@ -47,6 +47,10 @@ namespace BookTicket.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ClassSelected)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ConfirmationNumber).IsUnicode(false);
 
                 entity.Property(e => e.ContactAddress)
