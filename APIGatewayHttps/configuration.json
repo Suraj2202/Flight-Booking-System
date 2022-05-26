@@ -12,7 +12,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/v1.0/flight/onewaysearch/{flight}",
-      "UpstreamHttpMethod": [ "Post" ]
+      "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/TwoWaySearchFlights/{flight}",
@@ -24,7 +24,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/v1.0/flight/twowaysearch/{flight}",
-      "UpstreamHttpMethod": [ "Post" ]
+      "UpstreamHttpMethod": [ "Get" ]
     },
 
     //CancelTicket Microservices

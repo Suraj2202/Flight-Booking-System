@@ -17,5 +17,13 @@ namespace BookTicket.Models
         public string UserName { get; set; }
         public string UniqueKey { get; set; }
         public string BaseFare { get; set; }
+        public string FlightName { get; set; }
+        public string ContactNumber { get; set; }
+        public string ContactAddress { get; set; }
+        public string InstrumentUsed { get; set; }
+        public string BusinessRows { get; set; }
+        public string NonBusinessRows { get; set; }
+        public string BusinessSeats { get; set; }
+        public string NonBusinessSeats { get; set; }
     }
 }

@@ -45,25 +45,42 @@ namespace Airline.Controllers.Producer
                     {
                         if (GetDateTime(schedule.StartDateTime) >= GetDateTime(requestDetails.DepartStartDateTime))
                         {
-                            string baseFare = context.AirlinesDetails.Where(x => x.FlightNumber == schedule.FlightNumber)
-                                                                    .FirstOrDefault().BaseFare;
+                            string flightName = context.FlightsDetails.Where(x => x.FlightNumber == schedule.FlightNumber)
+                                                                        .FirstOrDefault().FlightName;
 
-                            SharedAirlineDetails sharedScheduleDetails = new SharedAirlineDetails()
+                            AirlinesDetails airline = context.AirlinesDetails?.Where(x => x.FlightNumber == schedule.FlightNumber)
+                                                                               .FirstOrDefault();
+                            if (airline.Blocked != null && airline.Blocked != "1")
                             {
-                                UserName = requestDetails.UserName,
-                                UniqueKey = uniqueValue,
-                                FlightNumber = schedule.FlightNumber,
-                                ConfirmationNumber = schedule.ConfirmationNumber,
-                                To = schedule.To,
-                                From = schedule.From,
-                                StartDateTime = schedule.StartDateTime,
-                                EndDateTime = schedule.EndDateTime,
-                                Schedule = schedule.Schedule,
-                                Meal = schedule.Meal,
-                                BaseFare = baseFare
-                            };
-                            
-                            await endPoint.Send(sharedScheduleDetails);
+                                SharedAirlineDetails sharedScheduleDetails = new SharedAirlineDetails()
+                                {
+                                    UserName = requestDetails.UserName,
+                                    UniqueKey = uniqueValue,
+                                    FlightNumber = schedule.FlightNumber,
+                                    ConfirmationNumber = schedule.ConfirmationNumber,
+                                    To = schedule.To,
+                                    From = schedule.From,
+                                    StartDateTime = schedule.StartDateTime.Replace('-', '/'),
+                                    EndDateTime = schedule.EndDateTime?.Replace('-', '/'),
+                                    Schedule = schedule.Schedule,
+                                    Meal = schedule.Meal,
+
+                                    //Flight Name
+                                    FlightName = flightName,
+
+                                    //Airline Details
+                                    ContactNumber = airline.ContactNumber,
+                                    ContactAddress = airline.ContactAddress,
+                                    InstrumentUsed = airline.InstrumentUsed,
+                                    BusinessRows = airline.BusinessRows,
+                                    NonBusinessRows = airline.NonBusinessRows,
+                                    BaseFare = airline.BaseFare,
+                                    BusinessSeats = airline.BusinessSeats,
+                                    NonBusinessSeats = airline.NonBusinessSeats
+                                };
+
+                                await endPoint.Send(sharedScheduleDetails);
+                            }
                         }
                     }
                     return Ok("Success " + uniqueValue);
@@ -74,7 +91,14 @@ namespace Airline.Controllers.Producer
 
         private DateTime GetDateTime(string dateTime)
         {
-            DateTime response = DateTime.ParseExact(dateTime, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
+            string[] newDate = dateTime.Split(' ')[0].Split('-');
+            string newTime = "";
+            if (dateTime.Split(' ').Length > 1)
+                newTime = " " + dateTime.Split(' ')[1];
+            else
+                newTime = " 00:00:00";
+
+            DateTime response = DateTime.ParseExact(newDate[1]+"/"+newDate[2]+"/"+newDate[0]+newTime, "MM/dd/yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             return response;
         }
     }

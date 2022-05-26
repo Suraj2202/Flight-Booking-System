@@ -9,12 +9,13 @@ namespace BookTicket.Controllers
     [ApiController]
     public class TwoWaySearchFlightsController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<FlightsSchedules> Get(FlightsSchedules flight)
+        //api/person/byflight?userName=value&uniqueKey=b
+        [HttpGet("flight")]
+        public IEnumerable<FlightsSchedules> Get(string userName, string uniqueKey)
         {
             using (UserSideContext context = new UserSideContext())
             {
-                return context.FlightsSchedules.Where(x => x.UserName == flight.UserName && x.UniqueKey == flight.UniqueKey).ToList();
+                return context.FlightsSchedules.Where(x => x.UserName == userName && x.UniqueKey == uniqueKey).ToList();
             }
         }
     }

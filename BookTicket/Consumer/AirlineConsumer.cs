@@ -34,23 +34,21 @@ namespace BookTicket.Consumer
                         Meal = data.Meal,
                         UserName = data.UserName,
                         UniqueKey = data.UniqueKey,
-                        BaseFare = data.BaseFare
+                        FlightName = data.FlightName,
+                        ContactNumber = data.ContactNumber,
+                        ContactAddress = data.ContactAddress,
+                        InstrumentUsed = data.InstrumentUsed,
+                        BusinessRows = data.BusinessRows,
+                        NonBusinessRows = data.NonBusinessRows,
+                        BaseFare = data.BaseFare,
+                        BusinessSeats = data.BusinessSeats,
+                        NonBusinessSeats = data.NonBusinessSeats
+
                     };
                     
                     ctx.FlightsSchedules.Add(scheduleDetail);
                     ctx.SaveChanges();
-                }
-                else if(data.ContactNumber != null)
-                {
-                    // TODO: 
-                    // if Airline details are not in User DB, then activate Producer and catch/Save in DB
-                }
-                else if(data.FlightName != null)
-                {
-                    //TODO : save it in User Flight Table
-                }
-
-                
+                }                                
             }
         }
     }
