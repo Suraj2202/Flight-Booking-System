@@ -17,12 +17,12 @@ namespace LoginSecurity.Controllers
         ITokenManager _tokenManager = new TokenManager();
 
         [HttpPost]
-        public IActionResult Post([FromBody] LoginDetails value)
+        public IActionResult Post([FromBody] LoginsDetails value)
         {
             using (UserSideContext ctx = new UserSideContext())
             {
                 string token = _tokenManager.GenerateJsonWebToken(value.UserName);
-                LoginDetails login = new LoginDetails()
+                LoginsDetails login = new LoginsDetails()
                 {
                     UserName = value.UserName,
                     Name = value.Name,
@@ -32,7 +32,7 @@ namespace LoginSecurity.Controllers
                     Role = value.Role
                 };
             
-                ctx.LoginDetails.Add(login);
+                ctx.LoginsDetails.Add(login);
                 ctx.SaveChanges();
                 return Ok();
             }

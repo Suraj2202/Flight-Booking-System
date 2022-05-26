@@ -15,7 +15,8 @@ namespace BookTicket.Models
         {
         }
 
-        public virtual DbSet<FlightSchedules> FlightSchedules { get; set; }
+        public virtual DbSet<FlightsSchedules> FlightsSchedules { get; set; }
+        public virtual DbSet<LoginsDetails> LoginsDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,22 +29,24 @@ namespace BookTicket.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<FlightSchedules>(entity =>
+            modelBuilder.Entity<FlightsSchedules>(entity =>
             {
                 entity.HasKey(e => e.EntryId);
 
                 entity.Property(e => e.EntryId).IsUnicode(false);
 
-                entity.Property(e => e.ConfirmationNumber)
-                    .HasMaxLength(100)
+                entity.Property(e => e.BaseFare)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ConfirmationNumber).IsUnicode(false);
+
                 entity.Property(e => e.EndDateTime)
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.FlightNumber)
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.From)
@@ -51,15 +54,13 @@ namespace BookTicket.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.Meal)
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Schedule)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
+                entity.Property(e => e.Schedule).IsUnicode(false);
 
                 entity.Property(e => e.StartDateTime)
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.To)
@@ -68,9 +69,32 @@ namespace BookTicket.Models
 
                 entity.Property(e => e.UniqueKey).IsUnicode(false);
 
+                entity.Property(e => e.UserName).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<LoginsDetails>(entity =>
+            {
+                entity.HasKey(e => e.UserName);
+
                 entity.Property(e => e.UserName)
-                    .HasMaxLength(100)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.Email).IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Password)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Role)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Token).IsUnicode(false);
             });
 
             OnModelCreatingPartial(modelBuilder);

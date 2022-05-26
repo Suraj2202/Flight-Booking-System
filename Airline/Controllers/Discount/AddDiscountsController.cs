@@ -14,19 +14,31 @@ namespace Airline.Controllers.Discount
     {
         // GET: api/<AddDiscountsController>
         [HttpGet]
-        public IEnumerable<DiscountDetails> Get()
+        public IEnumerable<DiscountsDetails> Get()
         {
             using (InventoryContext context = new InventoryContext())
             {
-                return context.DiscountDetails.ToList();
+                return context.DiscountsDetails.ToList();
+            }
+        }
+
+        // GET: Single Data
+        [HttpGet("{couponCode}")]
+        public DiscountsDetails Get(string couponCode)
+        {
+            using (InventoryContext context = new InventoryContext())
+            {
+                return context.DiscountsDetails?.Where<DiscountsDetails>(x => 
+                                                                         x.CouponCode == couponCode)
+                                                                         .FirstOrDefault();
             }
         }
 
         // POST api/<AddDiscountsController>
         [HttpPost]
-        public IActionResult Post([FromBody] DiscountDetails discountDetails)
+        public IActionResult Post([FromBody] DiscountsDetails discountDetails)
         {
-            DiscountDetails discountDetail = new DiscountDetails()
+            DiscountsDetails discountDetail = new DiscountsDetails()
             {
                 CouponCode = discountDetails.CouponCode,
                 MinimumAmount = discountDetails.MinimumAmount,
@@ -36,7 +48,7 @@ namespace Airline.Controllers.Discount
                 //adding to Discount Details DB
                 using (InventoryContext context = new InventoryContext())
                 {
-                    context.DiscountDetails.Add(discountDetail);
+                    context.DiscountsDetails.Add(discountDetail);
 
                     context.SaveChanges();
                 return Ok("Success");

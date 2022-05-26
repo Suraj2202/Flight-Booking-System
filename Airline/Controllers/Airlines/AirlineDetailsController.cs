@@ -1,5 +1,6 @@
 ﻿using Airline.FieldSetting;
 using Airline.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,22 +21,32 @@ namespace Airline.Controllers.Airlines
 
         // GET: api/<AirlineDetailsController>
         [HttpGet]
-        public IEnumerable<AirlineDetails> Get()
+        public IEnumerable<AirlinesDetails> Get()
         {
             using (InventoryContext context = new InventoryContext())
             {
-                return context.AirlineDetails.ToList();
+                return context.AirlinesDetails.ToList();
+            }
+        }
+
+        //Get Particular data
+        [HttpGet("{value}")]
+        public AirlinesDetails Get(string value)
+        {
+            using (InventoryContext context = new InventoryContext())
+            {
+                return (context.AirlinesDetails?.Where<AirlinesDetails>(x => x.FlightNumber == value).FirstOrDefault());
             }
         }
 
         // POST api/<AirlineDetailsController>
         [HttpPost]
-        public IActionResult Post([FromBody] AirlineDetails value)
+        public IActionResult PostAirline([FromBody] AirlinesDetails value)
         {
             //Previous Condition : first check if Flight nUmber is already in FlightDetails Table or not
             if (airline.IsFlightNumberAvailable(value.FlightNumber))
-            {
-                AirlineDetails airlineDetails = new AirlineDetails()
+            {                
+                AirlinesDetails airlineDetails = new AirlinesDetails()
                 {
                     FlightNumber = value.FlightNumber,
                     Logo = airline.GetAirlineLogoPath(value.FlightNumber),
@@ -46,19 +57,20 @@ namespace Airline.Controllers.Airlines
                     NonBusinessSeats = value.NonBusinessSeats,
                     BaseFare = value.BaseFare,
                     BusinessRows = value.BusinessRows,
-                    NonBusinessRows = value.NonBusinessRows,
+                    NonBusinessRows = value.NonBusinessRows,    
+                    Blocked = "0"
                 };
 
 
                 //adding to Airline Details DB
                 using (InventoryContext context = new InventoryContext())
                 {
-                    context.AirlineDetails.Add(airlineDetails);
+                    context.AirlinesDetails.Add(airlineDetails);
 
                     context.SaveChanges();
                     //Once Details is updated, Update the DetailsUpdated as 1
-                    FlightDetails flightDetails = context.FlightDetails.Where(flight => flight.FlightNumber == airlineDetails.FlightNumber).FirstOrDefault();
-                    flightDetails.DetailsUpdated = 1;
+                    FlightsDetails flightDetails = context.FlightsDetails.Where(flight => flight.FlightNumber == airlineDetails.FlightNumber).FirstOrDefault();
+                    flightDetails.DetailsUpdated = "1";
 
                     context.SaveChanges();
                     return Ok("Success");

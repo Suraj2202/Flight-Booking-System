@@ -18,19 +18,29 @@ namespace Airline.Controllers.Flight
 
         // GET: api/<FlightDetailsController>
         [HttpGet]
-        public IEnumerable<FlightDetails> Get()
+        public IEnumerable<FlightsDetails> Get()
         {
             using (InventoryContext context = new InventoryContext())
             {
-                return context.FlightDetails.ToList();
+                return context.FlightsDetails.ToList();
+            }
+        }
+
+        // GET: Single Data
+        [HttpGet("{flightsDetails}")]
+        public IEnumerable<FlightsDetails> Get(string flightsDetails)
+        {
+            using (InventoryContext context = new InventoryContext())
+            {
+                return (IEnumerable<FlightsDetails>)context.FlightsDetails?.Where(x => x.FlightNumber == flightsDetails).FirstOrDefault();
             }
         }
 
         // POST api/<FlightDetailsController>
         [HttpPost]
-        public void Post([FromBody] FlightDetails value)
+        public void Post([FromBody] FlightsDetails value)
         {
-            FlightDetails flightDetails = new FlightDetails();
+            FlightsDetails flightDetails = new FlightsDetails();
             
             if(airlineData.IsFlightNumberAvailable(value.FlightNumber))
             {
@@ -47,7 +57,7 @@ namespace Airline.Controllers.Flight
             {
                 using (InventoryContext context = new InventoryContext())
                 {
-                    context.FlightDetails.Add(flightDetails);
+                    context.FlightsDetails.Add(flightDetails);
                     context.SaveChanges();
                 }
             }

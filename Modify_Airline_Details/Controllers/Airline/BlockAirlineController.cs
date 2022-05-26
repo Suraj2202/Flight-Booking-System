@@ -9,12 +9,12 @@ namespace Modify_Airline_Details.Controllers.Airline
     public class BlockAirlineController : ControllerBase
     {
         // POST: /api/<BlockAirlineController>
-        public IActionResult Post([FromBody] AirlineDetails details)
+        public IActionResult Post([FromBody] AirlinesDetails details)
         {
             using(InventoryContext ctx = new InventoryContext())
             {
-                AirlineDetails blockAirline = ctx.AirlineDetails.Where(x => x.FlightNumber == details.FlightNumber)?.FirstOrDefault();
-                blockAirline.Blocked = 1;
+                AirlinesDetails blockAirline = ctx.AirlinesDetails.Where(x => x.FlightNumber == details.FlightNumber)?.FirstOrDefault();
+                blockAirline.Blocked = "1";
                 ctx.SaveChanges();
                 return Ok("Success");
             }

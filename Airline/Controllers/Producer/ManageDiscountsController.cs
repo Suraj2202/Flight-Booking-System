@@ -22,12 +22,12 @@ namespace Airline.Controllers.Producer
         }
 
         [HttpPost]
-        public async Task<IActionResult> Discount([FromBody] DiscountDetails discountDetails)
+        public async Task<IActionResult> Discount([FromBody] DiscountsDetails discountDetails)
         {
             Uri uri = new Uri("rabbitmq://localhost/shared_airline_queue");
             using (InventoryContext context = new InventoryContext())
             {
-                DiscountDetails discountDetail = context.DiscountDetails?.Where(x => x.CouponCode == discountDetails.CouponCode).FirstOrDefault();
+                DiscountsDetails discountDetail = context.DiscountsDetails?.Where(x => x.CouponCode == discountDetails.CouponCode).FirstOrDefault();
                 var endPoint = await _bus.GetSendEndpoint(uri);
                 if (discountDetail != null)
                 {

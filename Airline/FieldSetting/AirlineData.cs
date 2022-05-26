@@ -11,7 +11,7 @@ namespace Airline.FieldSetting
         public string GetAirlineLogoPath(string flightNumber)
         {
             if (flightNumber != null && DomesticAirlineName().ContainsKey(flightNumber.Substring(0,2)))
-                return @".\Images\Logos/" + flightNumber + ".png";
+                return @".\Images\Logos\" + flightNumber.Substring(0, 2) + ".png";
             else
                 return "";
         }
@@ -70,7 +70,7 @@ namespace Airline.FieldSetting
                 bool changeAccepted = false;
                 while(changeAccepted != true)
                 {
-                    string checkValue = ctx.ScheduleDetails.Where(x => x.ConfirmationNumber == confirmationNumber)?.FirstOrDefault()?.ConfirmationNumber;
+                    string checkValue = ctx.SchedulesDetails.Where(x => x.ConfirmationNumber == confirmationNumber)?.FirstOrDefault()?.ConfirmationNumber;
 
                     if (checkValue != "")
                     {
@@ -86,5 +86,14 @@ namespace Airline.FieldSetting
             return confirmationNumber;
         }
 
+        public int ConvertStringToInt(string value)
+        {
+            return int.Parse(value);
+        }
+
+        public double ConvertStringToDouble(string value)
+        {
+            return double.Parse(value);
+        }
     }
 }

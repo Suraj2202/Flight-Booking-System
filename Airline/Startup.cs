@@ -22,11 +22,9 @@ namespace Airline
 
             services.AddCors((options) =>
             {
-                options.AddPolicy(name: "angularApplication", (builder) =>
+                options.AddDefaultPolicy((builder) =>
                 {
-                    builder.AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
                 });
             });            ;
             services.AddMassTransit(x =>
@@ -64,11 +62,12 @@ namespace Airline
 
             app.UseStaticFiles();
 
+            app.UseCors();
+
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseCors("angularApplication");
 
             app.UseEndpoints(endpoints =>
             {

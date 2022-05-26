@@ -13,13 +13,13 @@ namespace Modify_Airline_Details.Controllers.Discount
     public class UpdateDiscountDetailsController : ControllerBase
     {
 
-        [HttpPost]
-        public IActionResult Post([FromBody] DiscountDetails discountDetails)
+        [HttpPost("{checkValue}")]
+        public IActionResult Post(string checkValue,[FromBody] DiscountsDetails discountDetails)
         {
             using (InventoryContext context = new InventoryContext())
             {
-                DiscountDetails discount = context.DiscountDetails.Where(x => x.CouponCode == discountDetails.CouponCode).FirstOrDefault();
-                if (discountDetails.CouponCode != null && discount != null)
+                DiscountsDetails discount = context.DiscountsDetails.Where(x => x.CouponCode == checkValue).FirstOrDefault();
+                if (discount != null)
                 {
                     if (discountDetails.CouponCode != null)
                         discount.CouponCode = discountDetails.CouponCode;
@@ -33,7 +33,7 @@ namespace Modify_Airline_Details.Controllers.Discount
                     return Ok("Success");
                 }
                 else
-                    return BadRequest();
+                    return BadRequest("Coupon Code not found");
             }
         }
     }

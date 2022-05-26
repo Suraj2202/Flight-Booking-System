@@ -30,8 +30,8 @@ namespace Airline.Controllers.Producer
             using(InventoryContext context = new InventoryContext())
             {
 
-                List<ScheduleDetails> allSchedule = context.ScheduleDetails
-                                                            ?.Where<ScheduleDetails>(x => 
+                List<SchedulesDetails> allSchedule = context.SchedulesDetails
+                                                            ?.Where<SchedulesDetails>(x => 
                                                             x.To == requestDetails.To && 
                                                             x.From == requestDetails.From)
                                                             .ToList();
@@ -45,7 +45,7 @@ namespace Airline.Controllers.Producer
                     {
                         if (GetDateTime(schedule.StartDateTime) >= GetDateTime(requestDetails.DepartStartDateTime))
                         {
-                            double baseFare = (double)context.AirlineDetails.Where(x => x.FlightNumber == schedule.FlightNumber)
+                            string baseFare = context.AirlinesDetails.Where(x => x.FlightNumber == schedule.FlightNumber)
                                                                     .FirstOrDefault().BaseFare;
 
                             SharedAirlineDetails sharedScheduleDetails = new SharedAirlineDetails()

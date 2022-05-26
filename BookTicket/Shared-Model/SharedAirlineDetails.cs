@@ -12,12 +12,12 @@ namespace Shared_Model
         public string ContactNumber { get; set; }
         public string ContactAddress { get; set; }
         public string InstrumentUsed { get; set; }
-        public int? BusinessSeats { get; set; }
-        public int? NonBusinessSeats { get; set; }
-        public double? BaseFare { get; set; }
-        public int? BusinessRows { get; set; }
-        public int? NonBusinessRows { get; set; }
-        public int? Blocked { get; set; }
+        public string BusinessSeats { get; set; }
+        public string NonBusinessSeats { get; set; }
+        public string BaseFare { get; set; }
+        public string BusinessRows { get; set; }
+        public string NonBusinessRows { get; set; }
+        public string Blocked { get; set; }
 
         //flight
         public string FlightName { get; set; }
@@ -35,7 +35,7 @@ namespace Shared_Model
 
         //Discounted Price
         public string CouponCode { get; set; }
-        public double? Value { get; set; }
-        public double? MinimumAmount { get; set; }
+        public string Value { get; set; }
+        public string MinimumAmount { get; set; }
     }
 }

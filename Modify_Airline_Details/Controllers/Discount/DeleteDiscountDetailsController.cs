@@ -13,13 +13,13 @@ namespace Modify_Airline_Details.Controllers.Discount
     public class DeleteDiscountDetailsController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Post([FromBody] DiscountDetails discount)
+        public IActionResult Post([FromBody] DiscountsDetails discount)
         {
             using (InventoryContext ctx = new InventoryContext())
             {
-                DiscountDetails deleteRow = ctx.DiscountDetails.Where(x => x.CouponCode == discount.CouponCode)?.FirstOrDefault();
+                DiscountsDetails deleteRow = ctx.DiscountsDetails.Where(x => x.CouponCode == discount.CouponCode)?.FirstOrDefault();
                 ctx.Remove(deleteRow);
-
+                ctx.SaveChanges();
                 return Ok("Success");
             }
         }

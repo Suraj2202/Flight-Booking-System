@@ -12,16 +12,14 @@ namespace Modify_Airline_Details.Controllers.Airline
     {
         
         // POST api/<UpdateAirlineDetailsController>
-        [HttpPost]
-        public IActionResult Post([FromBody] AirlineDetails airlineDetails)
+        [HttpPost("{checkValue}")]
+        public IActionResult Post(string checkValue,[FromBody] AirlinesDetails airlineDetails)
         {
             using (InventoryContext context = new InventoryContext())
             {
-                AirlineDetails airline = context.AirlineDetails.Where(x => x.FlightNumber == airlineDetails.FlightNumber).FirstOrDefault();
-                if (airlineDetails.FlightNumber != null && airline != null)
+                AirlinesDetails airline = context.AirlinesDetails.Where(x => x.FlightNumber == checkValue).FirstOrDefault();
+                if (airline != null)
                 {
-                    if (airlineDetails.Logo != null)
-                        airline.Logo = airlineDetails.Logo;
                     if (airlineDetails.ContactNumber != null)
                         airline.ContactNumber = airlineDetails.ContactNumber;
                     if (airlineDetails.ContactAddress != null)
@@ -38,6 +36,9 @@ namespace Modify_Airline_Details.Controllers.Airline
                         airline.BusinessRows = airlineDetails.BusinessRows;
                     if (airlineDetails.NonBusinessRows != null)
                         airline.NonBusinessRows = airlineDetails.NonBusinessRows;
+                    if(airline.Blocked != null)
+                        airline.Blocked = airlineDetails.Blocked;
+                    
 
                     // update all the values passed from 
                     context.SaveChanges();

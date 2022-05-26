@@ -69,7 +69,7 @@ namespace Modify_Airline_Details.FieldSetting
                 bool changeAccepted = false;
                 while(changeAccepted != true)
                 {
-                    string checkValue = ctx.ScheduleDetails.Where(x => x.ConfirmationNumber == confirmationNumber)?.FirstOrDefault()?.ConfirmationNumber;
+                    string checkValue = ctx.SchedulesDetails.Where(x => x.ConfirmationNumber == confirmationNumber)?.FirstOrDefault()?.ConfirmationNumber;
 
                     if (checkValue != "")
                     {

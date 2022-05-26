@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Airline.Models
 {
-    public partial class ScheduleDetails
+    public partial class SchedulesDetails
     {
         public string FlightNumber { get; set; }
         public string ConfirmationNumber { get; set; }

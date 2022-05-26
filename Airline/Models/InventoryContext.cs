@@ -15,23 +15,23 @@ namespace Airline.Models
         {
         }
 
-        public virtual DbSet<AirlineDetails> AirlineDetails { get; set; }
-        public virtual DbSet<DiscountDetails> DiscountDetails { get; set; }
-        public virtual DbSet<FlightDetails> FlightDetails { get; set; }
-        public virtual DbSet<ScheduleDetails> ScheduleDetails { get; set; }
+        public virtual DbSet<AirlinesDetails> AirlinesDetails { get; set; }
+        public virtual DbSet<DiscountsDetails> DiscountsDetails { get; set; }
+        public virtual DbSet<FlightsDetails> FlightsDetails { get; set; }
+        public virtual DbSet<SchedulesDetails> SchedulesDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-OG93GD7N\\SQLEXPRESS;Database=Inventory;User ID=admin;Password=admin");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-OG93GD7N\\SQLEXPRESS;Database=Inventory;User ID=admin;Password=admin;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AirlineDetails>(entity =>
+            modelBuilder.Entity<AirlinesDetails>(entity =>
             {
                 entity.HasKey(e => e.FlightNumber);
 
@@ -39,7 +39,21 @@ namespace Airline.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Blocked).HasDefaultValueSql("((0))");
+                entity.Property(e => e.BaseFare)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Blocked)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BusinessRows)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BusinessSeats)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ContactAddress).IsUnicode(false);
 
@@ -47,27 +61,39 @@ namespace Airline.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.InstrumentUsed).IsUnicode(false);
+                entity.Property(e => e.InstrumentUsed)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Logo).IsUnicode(false);
 
-                entity.HasOne(d => d.FlightNumberNavigation)
-                    .WithOne(p => p.AirlineDetails)
-                    .HasForeignKey<AirlineDetails>(d => d.FlightNumber)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_AirlineDetails_FlightDetails");
-            });
+                entity.Property(e => e.NonBusinessRows)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
-            modelBuilder.Entity<DiscountDetails>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.CouponCode)
+                entity.Property(e => e.NonBusinessSeats)
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<FlightDetails>(entity =>
+            modelBuilder.Entity<DiscountsDetails>(entity =>
+            {
+                entity.HasKey(e => e.CouponCode);
+
+                entity.Property(e => e.CouponCode)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.MinimumAmount)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Value)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<FlightsDetails>(entity =>
             {
                 entity.HasKey(e => e.FlightNumber);
 
@@ -75,13 +101,16 @@ namespace Airline.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.DetailsUpdated)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.FlightName)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<ScheduleDetails>(entity =>
+            modelBuilder.Entity<SchedulesDetails>(entity =>
             {
                 entity.HasKey(e => e.ConfirmationNumber);
 

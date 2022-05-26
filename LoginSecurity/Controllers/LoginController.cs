@@ -39,12 +39,12 @@ namespace LoginSecurity.Controllers
 */
         // POST api/<LoginController>
         [HttpPost]
-        public IActionResult Post([FromBody] LoginDetails value)
+        public IActionResult Post([FromBody] LoginsDetails value)
         {
             
             using(UserSideContext ctx = new UserSideContext())
             {
-                LoginDetails user = ctx.LoginDetails?.Where(x =>
+                LoginsDetails user = ctx.LoginsDetails?.Where(x =>
                                                       x.UserName == value.UserName &&
                                                       x.Password == value.Password)
                                                       .FirstOrDefault();
@@ -53,16 +53,16 @@ namespace LoginSecurity.Controllers
                 {
                     string userToken = user.Token;
                     bool valid = _tokenManager.ValidateToken(userToken);
-                    int role = user.Role;
+                    string role = user.Role;
                     if (valid)
-                        return Ok("Success " + role);
+                        return Ok("Success Role " + role);
                     else
                     {
                         // if token expire then save it in db.
                         string token = _tokenManager.GenerateJsonWebToken(user.UserName);
                         user.Token = token;
                         ctx.SaveChanges();
-                        return Ok("New Token Generated " + role);
+                        return Ok("New Token Generated Role " + role);
                     }
                 }
                 else

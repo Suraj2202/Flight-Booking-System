@@ -17,14 +17,16 @@ namespace Modify_Airline_Details.Controllers.Schedule
 
         #endregion
         // POST api/<UpdateScheduleDetailsController>
-        [HttpPost]
-        public IActionResult Post([FromBody] ScheduleDetails scheduleDetails)
+        [HttpPost("{checkValue}")]
+        public IActionResult Post(string checkValue,[FromBody] SchedulesDetails scheduleDetails)
         {
             using (InventoryContext context = new InventoryContext())
             {
-                ScheduleDetails airline = context.ScheduleDetails.Where(x => x.ConfirmationNumber == scheduleDetails.ConfirmationNumber).FirstOrDefault();
-                if (scheduleDetails.FlightNumber != null && airline != null)
+                SchedulesDetails airline = context.SchedulesDetails.Where(x => x.ConfirmationNumber == checkValue).FirstOrDefault();
+                if (airline != null)
                 {
+                    if (scheduleDetails.FlightNumber != null)
+                        airline.FlightNumber = scheduleDetails.FlightNumber;
                     if (scheduleDetails.From != null)
                         airline.From = scheduleDetails.From;
                     if (scheduleDetails.To != null)
@@ -43,7 +45,7 @@ namespace Modify_Airline_Details.Controllers.Schedule
                     return Ok("Success");
                 }
                 else
-                    return BadRequest();
+                    return BadRequest(checkValue);
             }
         }
 

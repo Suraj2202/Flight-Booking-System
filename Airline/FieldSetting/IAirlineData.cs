@@ -15,5 +15,10 @@ namespace Airline.FieldSetting
 
         public string GetConfirmationNumber(string flightNumber);
 
+        public int ConvertStringToInt(string value);
+
+        public double ConvertStringToDouble(string value);
+
+
     }
 }

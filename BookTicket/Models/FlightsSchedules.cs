@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LoginSecurity.Models
+namespace BookTicket.Models
 {
-    public partial class FlightSchedules
+    public partial class FlightsSchedules
     {
         public string EntryId { get; set; }
         public string FlightNumber { get; set; }
@@ -16,6 +16,6 @@ namespace LoginSecurity.Models
         public string Meal { get; set; }
         public string UserName { get; set; }
         public string UniqueKey { get; set; }
-        public double? BaseFare { get; set; }
+        public string BaseFare { get; set; }
     }
 }

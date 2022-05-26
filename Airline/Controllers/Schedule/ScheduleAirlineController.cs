@@ -22,24 +22,34 @@ namespace Airline.Controllers.Schedule
 
         // GET: api/<ScheduleAirlineController>
         [HttpGet]
-        public IEnumerable<ScheduleDetails> Get()
+        public IEnumerable<SchedulesDetails> Get()
         {
             using (InventoryContext context = new InventoryContext())
             {
-                return context.ScheduleDetails.ToList();
+                return context.SchedulesDetails.ToList();
+            }
+        }
+
+        // GET: Single Data
+        [HttpGet("{schedulesDetails}")]
+        public SchedulesDetails Get(string schedulesDetails)
+        {
+            using (InventoryContext context = new InventoryContext())
+            {
+                return context.SchedulesDetails?.Where(x => x.ConfirmationNumber == schedulesDetails).FirstOrDefault();
             }
         }
 
         // POST api/<ScheduleAirlineController>
         [HttpPost]
-        public IActionResult Post([FromBody] ScheduleDetails scheduleDetails)
+        public IActionResult Post([FromBody] SchedulesDetails scheduleDetails)
         {
             if(scheduleDetails.FlightNumber != null)
             {                
                 //adding 
                 using(InventoryContext ctx = new InventoryContext())
                 {
-                    ScheduleDetails details = new ScheduleDetails()
+                    SchedulesDetails details = new SchedulesDetails()
                     {
                         FlightNumber = scheduleDetails.FlightNumber,
                         ConfirmationNumber = airlineData.GetConfirmationNumber(scheduleDetails.FlightNumber),
@@ -51,7 +61,7 @@ namespace Airline.Controllers.Schedule
                         Meal = scheduleDetails.Meal
                     };
                     
-                    ctx.ScheduleDetails.Add(details);
+                    ctx.SchedulesDetails.Add(details);
                     ctx.SaveChanges();
                     return Ok("Success");
                 }

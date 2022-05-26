@@ -10,13 +10,13 @@ namespace Modify_Airline_Details.Controllers.Schedule
     {
         // POST : api/<DeleteScheduleDetailsController>
         [HttpPost]
-        public IActionResult Post([FromBody] ScheduleDetails schedule)
+        public IActionResult Post([FromBody] SchedulesDetails schedule)
         {
             using(InventoryContext ctx = new InventoryContext())
             {
-                ScheduleDetails deleteRow = ctx.ScheduleDetails.Where(x => x.ConfirmationNumber == schedule.ConfirmationNumber)?.FirstOrDefault();
+                SchedulesDetails deleteRow = ctx.SchedulesDetails.Where(x => x.ConfirmationNumber == schedule.ConfirmationNumber)?.FirstOrDefault();
                 ctx.Remove(deleteRow);
-
+                ctx.SaveChanges();
                 return Ok("Success");
             }
         }

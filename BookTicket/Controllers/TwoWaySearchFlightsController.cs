@@ -10,11 +10,11 @@ namespace BookTicket.Controllers
     public class TwoWaySearchFlightsController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<FlightSchedules> Get(FlightSchedules flight)
+        public IEnumerable<FlightsSchedules> Get(FlightsSchedules flight)
         {
             using (UserSideContext context = new UserSideContext())
             {
-                return context.FlightSchedules.Where(x => x.UserName == flight.UserName && x.UniqueKey == flight.UniqueKey).ToList();
+                return context.FlightsSchedules.Where(x => x.UserName == flight.UserName && x.UniqueKey == flight.UniqueKey).ToList();
             }
         }
     }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Modify_Airline_Details.Models
+namespace LoginSecurity.Models
 {
-    public partial class ScheduleDetails
+    public partial class FlightsSchedules
     {
+        public string EntryId { get; set; }
         public string FlightNumber { get; set; }
         public string ConfirmationNumber { get; set; }
         public string From { get; set; }
@@ -13,5 +14,8 @@ namespace Modify_Airline_Details.Models
         public string EndDateTime { get; set; }
         public string Schedule { get; set; }
         public string Meal { get; set; }
+        public string UserName { get; set; }
+        public string UniqueKey { get; set; }
+        public string BaseFare { get; set; }
     }
 }

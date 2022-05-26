@@ -14,14 +14,14 @@ namespace BookTicket.Consumer
         public async Task Consume(ConsumeContext<SharedAirlineDetails> context)
         {
             var data = context.Message;
-            
+            Console.WriteLine(data);
             //save to data to DB
 
             using(UserSideContext ctx = new UserSideContext())
             {
                 if (data.UniqueKey != null)
                 {
-                    FlightSchedules scheduleDetail = new FlightSchedules()
+                    FlightsSchedules scheduleDetail = new FlightsSchedules()
                     {
                         EntryId = Guid.NewGuid().ToString(),
                         FlightNumber = data.FlightNumber,
@@ -34,10 +34,10 @@ namespace BookTicket.Consumer
                         Meal = data.Meal,
                         UserName = data.UserName,
                         UniqueKey = data.UniqueKey,
-                        BaseFare = data?.BaseFare
+                        BaseFare = data.BaseFare
                     };
                     
-                    ctx.FlightSchedules.Add(scheduleDetail);
+                    ctx.FlightsSchedules.Add(scheduleDetail);
                     ctx.SaveChanges();
                 }
                 else if(data.ContactNumber != null)
