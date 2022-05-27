@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BookTicket.Models
+namespace Download_Ticket.Models
 {
     public partial class UserSideContext : DbContext
     {

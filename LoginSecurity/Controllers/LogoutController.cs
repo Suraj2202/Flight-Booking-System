@@ -13,13 +13,12 @@ namespace LoginSecurity.Controllers
     public class LogoutController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Post([FromBody] LoginsDetails value)
+        public IActionResult Post([FromBody] string uname)
         {
             using (UserSideContext ctx = new UserSideContext())
             {
                 LoginsDetails user = ctx.LoginsDetails?.Where(x =>
-                                                      x.UserName == value.UserName &&
-                                                      x.Password == value.Password)
+                                                      x.UserName == uname)
                                                       .FirstOrDefault();
 
                 if (user != null)

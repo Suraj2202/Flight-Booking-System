@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BookTicket.Models
+namespace Check_Status_with_PNR.Models
 {
     public partial class UserSideContext : DbContext
     {

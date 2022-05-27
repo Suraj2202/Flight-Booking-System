@@ -72,6 +72,7 @@ namespace Airline.Controllers.Producer
 
                             if (airline.Blocked != null && airline.Blocked != "1" && entrySuccess)
                             {
+                                Random r = new Random();
                                 SharedAirlineDetails sharedScheduleDetails = new SharedAirlineDetails()
                                 {
                                     UserName = requestDetails.UserName,
@@ -80,7 +81,7 @@ namespace Airline.Controllers.Producer
                                     ConfirmationNumber = schedule.ConfirmationNumber,
                                     To = schedule.To,
                                     From = schedule.From,
-                                    StartDateTime = GetDateTime(requestDetails.DepartStartDateTime).ToString(),
+                                    StartDateTime = GetDateTime(requestDetails.DepartStartDateTime).AddHours(r.Next(4,15)).ToString(),
                                     EndDateTime = GetDateTime(requestDetails.DepartStartDateTime).AddHours(5).ToString(),
                                     Schedule = schedule.Schedule,
                                     Meal = schedule.Meal,

@@ -24,10 +24,29 @@ namespace LoginSecurity.Controllers
         ITokenManager _tokenManager = new TokenManager();
 
         // GET: api/<LoginController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        [HttpGet("{uname}")]
+        public string Get(string uname)
         {
-            return new string[] { "Login Successfull redirecting to Booking Page" };
+            using (UserSideContext ctx = new UserSideContext())
+            {
+                LoginsDetails user = ctx.LoginsDetails?.Where(x =>
+                                                      x.UserName == uname)
+                                                      .FirstOrDefault();
+
+                if (user != null)
+                {
+                    bool validCheck = _tokenManager.ValidateToken(user.Token);
+                    if (validCheck)
+                    {
+                        return "Yes";
+                    }
+                    else
+                    {
+                        return "No";
+                    }
+                }
+            }
+            return "No" ;
         }
 
         /*// GET api/<LoginController>/5

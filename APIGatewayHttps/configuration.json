@@ -27,9 +27,35 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
 
-    //CancelTicket Microservices
     {
-      "DownstreamPathTemplate": "/api/second",
+      "DownstreamPathTemplate": "/api/OneWayBookFlight",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9011
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/onewaybooking",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+    {
+      "DownstreamPathTemplate": "/api/TwoWayBookFlight",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9011
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/twowaybooking",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+
+    //CancelTicket Microservices    
+    {
+      "DownstreamPathTemplate": "/api/UpdateCancelStatus",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -37,8 +63,8 @@
           "Port": 9012
         }
       ],
-      "UpstreamPathTemplate": "/second",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamPathTemplate": "/api/v1.0/flight/updatecancelstatus",
+      "UpstreamHttpMethod": [ "Post" ]
     },
 
     //LoginSecurity Microservices
@@ -53,6 +79,18 @@
       ],
       "UpstreamPathTemplate": "/api/v1.0/flight/login",
       "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/login/{uname}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9013
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/login/{uname}",
+      "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/api/Signup",
@@ -81,7 +119,7 @@
     //DownloadTicket Microservices
 
     {
-      "DownstreamPathTemplate": "/api/ticket",
+      "DownstreamPathTemplate": "/api/ticket/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -89,13 +127,13 @@
           "Port": 9014
         }
       ],
-      "UpstreamPathTemplate": "/ticketdownload",
+      "UpstreamPathTemplate": "/api/v1.0/flight/ticketdownload/{id}",
       "UpstreamHttpMethod": [ "Get" ]
     },
 
     //Check_Status_with_PNR Microservice
     {
-      "DownstreamPathTemplate": "/api/status",
+      "DownstreamPathTemplate": "/api/GetAllTickets/{uname}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -103,7 +141,19 @@
           "Port": 9015
         }
       ],
-      "UpstreamPathTemplate": "/status",
+      "UpstreamPathTemplate": "/api/v1.0/flight/getalltickets/{uname}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/SingleSearch/{uname}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9015
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1.0/flight/singlesearchpnr/{uname}",
       "UpstreamHttpMethod": [ "Get" ]
     },
 
