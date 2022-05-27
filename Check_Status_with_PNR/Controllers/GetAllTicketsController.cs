@@ -37,7 +37,7 @@ namespace Check_Status_with_PNR.Controllers
                 }
 
 
-                return ctx.BookedTicketDetails?.Where(x=>x.UserName == uname).OrderByDescending(x=>x.DepartureTime).ToList();
+                return ctx.BookedTicketDetails?.Where(x=>x.UserName == uname).OrderBy(x=>x.DepartureTime).ToList();
             }
         }
 
