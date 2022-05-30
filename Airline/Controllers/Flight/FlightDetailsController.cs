@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Airline.Controllers.Flight
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class FlightDetailsController : ControllerBase
     {

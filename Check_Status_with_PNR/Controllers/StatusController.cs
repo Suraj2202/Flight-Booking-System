@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Check_Status_with_PNR.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class StatusController : ControllerBase
     {

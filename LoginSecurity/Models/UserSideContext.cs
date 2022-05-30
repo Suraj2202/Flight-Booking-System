@@ -15,6 +15,7 @@ namespace LoginSecurity.Models
         {
         }
 
+        public virtual DbSet<BookedTicketDetails> BookedTicketDetails { get; set; }
         public virtual DbSet<FlightsSchedules> FlightsSchedules { get; set; }
         public virtual DbSet<LoginsDetails> LoginsDetails { get; set; }
 
@@ -23,25 +24,120 @@ namespace LoginSecurity.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-OG93GD7N\\SQLEXPRESS;Database=UserSide;User ID=admin;Password=admin;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=tcp:inventory007.database.windows.net,1433;Initial Catalog=UserSide;Persist Security Info=False;User ID=gulu007;Password=Suraj@12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BookedTicketDetails>(entity =>
+            {
+                entity.HasKey(e => e.UniqueBookingId);
+
+                entity.Property(e => e.UniqueBookingId).IsUnicode(false);
+
+                entity.Property(e => e.ArrivalTime)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ArrivalTo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CanCancel)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CancelStatus)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DepartureFrom)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DepartureTime)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EmailId)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Fare)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FlightIid)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FlightName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Gender)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasangerAge)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.PasangerName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Pnrnumber).IsUnicode(false);
+
+                entity.Property(e => e.SeatNumber)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<FlightsSchedules>(entity =>
             {
-                entity.HasKey(e => e.EntryId);
-
-                entity.Property(e => e.EntryId).IsUnicode(false);
+                entity.HasNoKey();
 
                 entity.Property(e => e.BaseFare)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.BusinessRows)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.BusinessSeats)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ClassSelected)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.ConfirmationNumber).IsUnicode(false);
 
+                entity.Property(e => e.ContactAddress)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ContactNumber)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.EndDateTime)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.EntryId)
+                    .HasMaxLength(900)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FlightName)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -53,11 +149,25 @@ namespace LoginSecurity.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.InstrumentUsed)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Meal)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Schedule).IsUnicode(false);
+                entity.Property(e => e.NonBusinessRows)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NonBusinessSeats)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Schedule)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.StartDateTime)
                     .HasMaxLength(50)
@@ -69,7 +179,9 @@ namespace LoginSecurity.Models
 
                 entity.Property(e => e.UniqueKey).IsUnicode(false);
 
-                entity.Property(e => e.UserName).IsUnicode(false);
+                entity.Property(e => e.UserName)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<LoginsDetails>(entity =>
@@ -80,7 +192,9 @@ namespace LoginSecurity.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Email).IsUnicode(false);
+                entity.Property(e => e.Email)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)

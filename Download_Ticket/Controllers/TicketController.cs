@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Download_Ticket.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TicketController : ControllerBase
     {

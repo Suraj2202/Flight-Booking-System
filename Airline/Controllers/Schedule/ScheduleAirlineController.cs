@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Airline.Controllers.Schedule
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ScheduleAirlineController : ControllerBase
     {

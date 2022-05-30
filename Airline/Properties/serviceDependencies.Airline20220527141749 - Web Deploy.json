@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/inventory007/databases/Inventory",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:InventoryConnectionString",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

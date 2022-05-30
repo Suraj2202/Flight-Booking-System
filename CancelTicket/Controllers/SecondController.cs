@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CancelTicket.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SecondController : ControllerBase
     {

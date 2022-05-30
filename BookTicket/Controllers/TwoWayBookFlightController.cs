@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookTicket.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TwoWayBookFlightController : ControllerBase
     {

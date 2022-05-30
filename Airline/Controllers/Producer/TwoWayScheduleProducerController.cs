@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Airline.Controllers.Producer
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TwoWayScheduleProducerController : ControllerBase
     {
@@ -59,7 +59,7 @@ namespace Airline.Controllers.Producer
                             string[] allDays = schedule.Schedule.Split(',');
                             foreach (string day in allDays)
                             {
-                                if (GetDateTime(requestDetails.DepartStartDateTime).DayOfWeek.ToString() == day)
+                                if (GetDateTime(requestDetails.DepartStartDateTime).DayOfWeek.ToString() == day && !entrySuccess)
                                 {
                                     entrySuccess = true;
                                 }
@@ -127,7 +127,7 @@ namespace Airline.Controllers.Producer
                             string[] allDays = schedule.Schedule.Split(',');
                             foreach (string day in allDays)
                             {
-                                if (GetDateTime(requestDetails.DepartStartDateTime).DayOfWeek.ToString() == day)
+                                if (GetDateTime(requestDetails.DepartStartDateTime).DayOfWeek.ToString() == day && !entrySuccess)
                                 {
                                     entrySuccess = true;
                                 }

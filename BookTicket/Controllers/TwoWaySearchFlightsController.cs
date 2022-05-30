@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace BookTicket.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class TwoWaySearchFlightsController : ControllerBase
     {

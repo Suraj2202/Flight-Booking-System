@@ -25,7 +25,7 @@ namespace Modify_Airline_Details.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=LAPTOP-OG93GD7N\\SQLEXPRESS;Database=Inventory;User ID=admin;Password=admin;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=tcp:inventory007.database.windows.net,1433;Initial Catalog=Inventory;Persist Security Info=False;User ID=gulu007;Password=Suraj@12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
@@ -55,7 +55,9 @@ namespace Modify_Airline_Details.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ContactAddress).IsUnicode(false);
+                entity.Property(e => e.ContactAddress)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.ContactNumber)
                     .HasMaxLength(50)
@@ -65,7 +67,9 @@ namespace Modify_Airline_Details.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Logo).IsUnicode(false);
+                entity.Property(e => e.Logo)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.NonBusinessRows)
                     .HasMaxLength(50)
@@ -114,16 +118,13 @@ namespace Modify_Airline_Details.Models
             {
                 entity.HasKey(e => e.ConfirmationNumber);
 
-                entity.Property(e => e.ConfirmationNumber)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property(e => e.ConfirmationNumber).IsUnicode(false);
 
                 entity.Property(e => e.EndDateTime)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
                 entity.Property(e => e.FlightNumber)
-                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
@@ -131,7 +132,9 @@ namespace Modify_Airline_Details.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Meal).IsUnicode(false);
+                entity.Property(e => e.Meal)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Schedule).IsUnicode(false);
 

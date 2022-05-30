@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace LoginSecurity.Controllers
 {
 
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class LoginController : ControllerBase
     {

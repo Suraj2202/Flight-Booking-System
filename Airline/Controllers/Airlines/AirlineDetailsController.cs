@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Airline.Controllers.Airlines
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AirlineDetailsController : ControllerBase
     {

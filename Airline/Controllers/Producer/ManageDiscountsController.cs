@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Airline.Controllers.Producer
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ManageDiscountsController : ControllerBase
     {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LoginSecurity.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class SignupController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace LoginSecurity.Controllers
                     Password = value.Password,
                     Email = value.Email,
                     Token = token,
-                    Role = value.Role
+                    Role = "0"
                 };
             
                 ctx.LoginsDetails.Add(login);

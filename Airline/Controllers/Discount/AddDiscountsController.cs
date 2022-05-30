@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Airline.Controllers.Discount
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AddDiscountsController : ControllerBase
     {

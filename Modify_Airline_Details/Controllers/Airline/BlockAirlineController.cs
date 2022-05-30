@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Modify_Airline_Details.Controllers.Airline
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class BlockAirlineController : ControllerBase
     {

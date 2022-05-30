@@ -9,7 +9,7 @@ using Shared_Model;
 
 namespace Airline.Controllers.Producer
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AirlineProducerController :
         ControllerBase
