@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.31727.386
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookTicket", "BookTicket\BookTicket.csproj", "{7C71FA37-C03D-48C3-B123-671A061A9332}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGateway", "APIGateway\APIGateway.csproj", "{D1E19F1B-00EB-4ABA-9140-CDA15F397F19}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CancelTicket", "CancelTicket\CancelTicket.csproj", "{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoginSecurity", "LoginSecurity\LoginSecurity.csproj", "{7E4A4C5E-E813-4D45-8284-8AFA3F999959}"
@@ -21,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Modify_Airline_Details", "M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Airline", "Airline\Airline.csproj", "{B9EBA68C-798B-45B7-839C-DBD3D613FE9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIGatewayHttps", "APIGatewayHttps\APIGatewayHttps.csproj", "{22B133C6-6B57-4629-9A20-C1DFDBE6AE9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIGatewayHttps", "APIGatewayHttps\APIGatewayHttps.csproj", "{22B133C6-6B57-4629-9A20-C1DFDBE6AE9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +31,6 @@ Global
 		{7C71FA37-C03D-48C3-B123-671A061A9332}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C71FA37-C03D-48C3-B123-671A061A9332}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C71FA37-C03D-48C3-B123-671A061A9332}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D1E19F1B-00EB-4ABA-9140-CDA15F397F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1E19F1B-00EB-4ABA-9140-CDA15F397F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1E19F1B-00EB-4ABA-9140-CDA15F397F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1E19F1B-00EB-4ABA-9140-CDA15F397F19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01C0D0AD-0FE7-4D10-8DB0-52E9C8EDC54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
